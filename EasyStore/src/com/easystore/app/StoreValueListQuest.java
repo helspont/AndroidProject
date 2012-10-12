@@ -9,6 +9,19 @@ public class StoreValueListQuest extends ArrayList<StoreValueListQuest> {
 	 */
 	private static final long serialVersionUID = 3526910288462753667L;
 	String name = "";
+	String value ="";
+	/**
+	 * @return the value
+	 */
+	public String getValue() {
+		return value;
+	}
+	/**
+	 * @param value the value to set
+	 */
+	public void setValue(String value) {
+		this.value = value;
+	}
 	String type = "";
 	String question = "";
 	String atr1 = "";

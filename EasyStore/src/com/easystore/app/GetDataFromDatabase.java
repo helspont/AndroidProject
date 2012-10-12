@@ -133,8 +133,8 @@ public class GetDataFromDatabase extends ArrayList<StoreValueListQuest> {
 			try {
 				final StoreValueListQuest listItem = mydata.get(i); // --CloneChangeRequired
 				if (listItem != null) {
-					quest.username = list.get(1);
-					quest.device_id = list.get(1);
+					quest.name = list.get(1);
+					quest.value = list.get(2);
 					quest.question = list.get(1);
 					// System.out.println("List get 0: " + list.get(0));
 					quest.atr1 = list.get(2);
