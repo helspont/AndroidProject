@@ -11,4 +11,5 @@ In this app you can see how much money you spent. You can view mount, week or ye
 
 ### Progress
 07/09/2012 - We're starting - thinking over look and feel and functionylity as well.
-21/09/2012 - Add first sketch of app - just layout and some files witch will bee needed in future development. 
+21/09/2012 - Add first sketch of app - just layout and some files witch will bee needed in future development.
+04/01/2012 - Add first raw funkcionality, adding items and summing of all costs, still names are hadrcoded due in Czcech
