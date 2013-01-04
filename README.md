@@ -11,8 +11,8 @@ Primary this app was supposed for everyone who needs to have control over their 
 
 ###Progress
 
-07/09/2012\ - We're starting - thinking over look and feel and functionylity as well.
+07/09/2012 - We're starting - thinking over look and feel and functionylity as well.
 
-21/09/2012\ - Add first sketch of app - just layout and some files witch will bee needed in future development.
+21/09/2012 - Add first sketch of app - just layout and some files witch will bee needed in future development.
 
-04/01/2012\ - Add first raw funkcionality, adding items and summing of all costs, still names are hadrcoded due in Czcech
+04/01/2012 - Add first raw funkcionality, adding items and summing of all costs, still names are hadrcoded due in Czcech
