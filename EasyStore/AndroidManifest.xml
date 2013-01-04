@@ -13,8 +13,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
-            android:label="@string/title_activity_main"
-            android:theme="@android:style/Theme.DeviceDefault.NoActionBar.Fullscreen" >
+            android:label="@string/title_activity_main">
             
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,7 +23,7 @@
         </activity>
         <activity
             android:name=".AddItem"
-            android:theme="@android:style/Theme.DeviceDefault.NoActionBar.Fullscreen"></activity>
+            ></activity>
     </application>
 
 </manifest>

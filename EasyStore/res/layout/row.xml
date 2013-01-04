@@ -1,16 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    android:gravity="left|right"
     android:orientation="horizontal" >
-    
-    <TextView 
-        android:id="@+id/label"
+
+    <TextView
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="25dp"/>
-       <!--   android:textColor="#777dff4b" -->
-        
-    
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_weight="0.25"
+        android:text="Kč"
+        android:textSize="25dp" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/itemTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/linearLayout2"
+        android:layout_weight="1"
+        android:paddingLeft="10dp"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:text="TEST"
+        android:textSize="25dp" />
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/linearLayout2"
+        android:layout_width="3dp"
+        android:layout_height="fill_parent"
+        android:layout_alignLeft="@+id/costTextView"
+        android:layout_alignParentTop="true"
+        android:background="#17a2d1"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/costTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/textView1"
+        android:layout_weight="1"
+        android:paddingRight="10dp"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:text="TEST2"
+        android:textSize="25dp" />
+
+</RelativeLayout>
