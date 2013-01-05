@@ -1,9 +1,14 @@
 package com.easystore.app;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 import android.os.Bundle;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Context;
@@ -22,11 +27,11 @@ import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.TextView;
 
+@SuppressLint("NewApi")
 public class MainActivity extends ListActivity/*Activity*/ {
 	
 	private GetDataFromDatabase mydata = null;
 	private ArrayList<StoreValueListQuest> data = null;
-	TextView utrataTextView;
 	protected Button add;
 	protected String[] item,value,temp;
 	protected int [] values;
@@ -51,7 +56,7 @@ public class MainActivity extends ListActivity/*Activity*/ {
 		// mydata = null;
 		data = mydata.getValueAll(table);
 		data = mydata.getValueAll(table);
-		utrataTextView = (TextView)findViewById(R.id.sum);
+		sum = (TextView)findViewById(R.id.sum);
 		//list= (ListView)findViewById(R.id.list);
 		//list1= (ListView)findViewById(R.id.list1);
 		
@@ -75,33 +80,11 @@ public class MainActivity extends ListActivity/*Activity*/ {
 			
 		}
 
-		utrataTextView.setText(""+utrata+" Kè");
+		sum.setText(""+utrata+" Kè");
 		
 		MySimpleArrayAdapter adapter = new MySimpleArrayAdapter(this, data);
 	    setListAdapter(adapter);
 		
-		//ArrayList<String> itemtList = new ArrayList<String>();
-		//ArrayList<String> valutList = new ArrayList<String>();
-	    //itemtList.addAll( Arrays.asList(item) );
-	    //valutList.addAll(Arrays.asList(value));
-	      
-	    // Create ArrayAdapter using the planet list.  
-	    //listAdapter = new ArrayAdapter<String>(this, R.layout.row,R.id.label, itemtList);
-	   // listAdapter2 = new ArrayAdapter<String>(this, R.layout.row,R.id.label, valutList);
-		
-		//CustomAdapter adapter = new CustomAdapter();
-		// setListAdapter(customAdapter);
-		//list2 = (ListView) findViewById(android.R.id.list);
-		//ArrayAdapter<String> adapter= new ArrayAdapter<String>(this, R.id.label,R.id.label1);
-	
-		//setListAdapter(new ArrayAdapter<String>(this, R.layout.row,R.id.label,item));
-		//setListAdapter(new ArrayAdapter<String>(this, R.layout.row,R.id.label1,value));
-	
-		//setListAdapter(new ArrayAdapter<String>(this,R.layout.simple?list,R.id.label,temp));
-	
-		//list.setAdapter(listAdapter);
-		//list1.setAdapter(listAdapter2);
-
 		add.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -124,12 +107,16 @@ public class MainActivity extends ListActivity/*Activity*/ {
 		year = c.get(Calendar.YEAR);
 		month = c.get(Calendar.MONTH);
 		day = c.get(Calendar.DAY_OF_MONTH);
- 
+		
+		DecimalFormat mFormat= new DecimalFormat("00");
+		mFormat.setRoundingMode(RoundingMode.DOWN);
+		
 		// set current date into textview
 		date.setText(new StringBuilder()
 			// Month is 0 based, just add 1
-		.append("Dnes je: ").append(day).append("-").append(month + 1).append("-")
+		.append("Dnes je: ").append(mFormat.format(Double.valueOf(day))).append("-").append(mFormat.format(Double.valueOf(month+1))).append("-")
 			.append(year).append(" "));
+			
  
 	}
 	@Override
@@ -137,52 +124,6 @@ public class MainActivity extends ListActivity/*Activity*/ {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-	
-	/**
-	class CustomAdapter extends BaseAdapter{
-
-		@Override
-		public int getCount() {
-			// TODO Auto-generated method stub
-			return 0;
-		}
-
-		@Override
-		public Object getItem(int position) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public long getItemId(int position) {
-			// TODO Auto-generated method stub
-			return 0;
-		}
-
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-			// TODO Auto-generated method stub
-			mydata = new GetDataFromDatabase(getApplicationContext(),table);
-			// mydata = null;
-			table = "items";
-			data = mydata.getValueAll(table);
-			for (int i = 0; i < data.size(); i++) {
-
-				item[i] = data.get(i).getName();
-				value[i] = data.get(i).getValue();
-				//temp[i] = item[i]+"     "+value[i];
-			}
-			TextView textView = (TextView)findViewById(R.id.label);
-			textView.setText(item[position]);
-			
-			textView =(TextView) findViewById(R.id.label1);
-			textView.setText(value[position]);
-			//TextView textView1 = (TextView)findViewById(R.id.label1);
-			//textView1.setText(data.get(position).getValue());
-			return null;
-		}
-		
-	}*/
 	
 	private class MySimpleArrayAdapter extends ArrayAdapter<StoreValueListQuest> {
 		  private final Context context;
