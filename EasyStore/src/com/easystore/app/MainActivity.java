@@ -13,8 +13,11 @@ import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -45,11 +48,13 @@ public class MainActivity extends ListActivity/*Activity*/ {
 	private int day;
 	private ListView list,list1;
 	private ArrayAdapter<String> listAdapter,listAdapter2 ;
+	private Activity activity;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
+		activity = this;
 		add = (Button) findViewById(R.id.add);
 		table = "items";
 		mydata = new GetDataFromDatabase(this, table);
@@ -91,8 +96,7 @@ public class MainActivity extends ListActivity/*Activity*/ {
 			public void onClick(View v) {
 				Intent myIntent = new Intent(MainActivity.this, AddItem.class);
             	startActivity(myIntent);
-            	finishActivity(RESULT_OK);
-    			finish();
+            	
 			}
 		});
 		date = (TextView) findViewById(R.id.date);
@@ -125,6 +129,46 @@ public class MainActivity extends ListActivity/*Activity*/ {
 		return true;
 	}
 	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.menu_deleteItem:
+			Intent myIntent = new Intent(MainActivity.this, DeleteItem.class);
+        	startActivity(myIntent);
+			return true;
+			
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
+	
+	/* (non-Javadoc)
+	 * @see android.app.ListActivity#onListItemClick(android.widget.ListView, android.view.View, int, long)
+	 */
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		super.onListItemClick(l, v, position, id);
+		activity.openContextMenu(l);
+	}
+
+	
+
+
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreateContextMenu(android.view.ContextMenu, android.view.View, android.view.ContextMenu.ContextMenuInfo)
+	 */
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v,
+			ContextMenuInfo menuInfo) {
+		// TODO Auto-generated method stub
+		super.onCreateContextMenu(menu, v, menuInfo);
+		HelpPrinter help = new HelpPrinter();
+		help.displayer("Cont menu", this);
+	}
+
+
+
+
 	private class MySimpleArrayAdapter extends ArrayAdapter<StoreValueListQuest> {
 		  private final Context context;
 		  private final ArrayList<StoreValueListQuest> values;

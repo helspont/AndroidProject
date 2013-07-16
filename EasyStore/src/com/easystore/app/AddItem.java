@@ -43,6 +43,24 @@ public class AddItem extends Activity {
 			public void onClick(View v) {
 				String name = nameOfItem.getText().toString();
 				String value = valueOfItem.getText().toString();
+				if(name == null|| name.equals("")){
+					HelpPrinter help = new HelpPrinter();
+					help.displayer("You haven't entered name", AddItem.this);
+					nameOfItem.setBackgroundColor(0x772aaaff);
+					if(value == null || value.equals("")){
+						help.displayer("You haven't entered value", AddItem.this);
+						valueOfItem.setBackgroundColor(0x772aaaff);
+					}
+					return;
+				}
+				
+				if(value == null || value.equals("") ){
+					HelpPrinter help = new HelpPrinter();
+					help.displayer("You haven't entered value", AddItem.this);
+					valueOfItem.setBackgroundColor(0x772aaaff);
+					return;
+				}
+				
 				
 				MyDBHelper dbAdapter = MyDBHelper
 						.getDBAdapterInstance(AddItem.this);
